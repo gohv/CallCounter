@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
+import calendar.callcounter.CalendarUI;
+
 
 /**
  * @author georgi.hristov
@@ -15,25 +17,29 @@ public class CallCounterUI extends JFrame {
 
 	/**
 	 * 
-	 * Will add a date chooser and CallCounter will be able to save the ammount of calls for each day
+	 * Will add a date chooser and CallCounter will be able to save the amount
+	 * of calls for each day
 	 *
 	 */
-	
+
 	private static final long serialVersionUID = 1L;
+
 	CallCounterUI() {
 
 		createUI();
 	}
-	
+
 	private JButton count = new JButton("Count Call");
 	private JTextField counterField = new JTextField();
 	private int countCalls = 0;
 	private String parser;
 	private JButton resetButton = new JButton("Reset Counter");
+	private final JButton calendarButton = new JButton("Calendar");
+
 	private void createUI() {
 		// Main Frame
 		setTitle("Call Counter");
-		setBounds(100, 100, 230, 177);
+		setBounds(100, 100, 318, 177);
 		getContentPane().setLayout(null);
 
 		// Button
@@ -44,7 +50,7 @@ public class CallCounterUI extends JFrame {
 				countCalls++;
 				parser = Integer.toString(countCalls);
 				counterField.setText(parser);
-				
+
 			}
 		});
 		// Field
@@ -52,8 +58,7 @@ public class CallCounterUI extends JFrame {
 		counterField.setLocation(28, 11);
 		getContentPane().add(counterField);
 		counterField.setEditable(false);
-		
-		
+
 		resetButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				counterField.setText(" ");
@@ -62,6 +67,15 @@ public class CallCounterUI extends JFrame {
 		});
 		resetButton.setBounds(28, 95, 145, 32);
 		getContentPane().add(resetButton);
+		calendarButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CalendarUI calendar = new CalendarUI();
+				calendar.setVisible(true);
+			}
+		});
+		calendarButton.setBounds(183, 11, 89, 32);
+		
+		getContentPane().add(calendarButton);
 
 	}
 }
