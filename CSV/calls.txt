@@ -1,0 +1,6 @@
+Thu Apr 07 14:21:09 EEST 2016 Calls Made: 5
+Thu Apr 07 14:24:19 EEST 2016 Calls Made: 10
+Thu Apr 07 14:43:55 EEST 2016 Calls Made: 5
+java.text.SimpleDateFormat@90c46740 Calls Made: 2
+Thu Apr 07 16:06:59 EEST 2016 Calls Made: 6
+Thu Apr 07 16:09:01 EEST 2016 Calls Made: 2
