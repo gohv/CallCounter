@@ -2,12 +2,19 @@ package callcounterUI.callcounter;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
+import callSave.callcounter.*;
 import calendar.callcounter.CalendarUI;
-
 
 /**
  * @author georgi.hristov
@@ -17,8 +24,6 @@ public class CallCounterUI extends JFrame {
 
 	/**
 	 * 
-	 * Will add a date chooser and CallCounter will be able to save the amount
-	 * of calls for each day
 	 *
 	 */
 
@@ -34,7 +39,9 @@ public class CallCounterUI extends JFrame {
 	private int countCalls = 0;
 	private String parser;
 	private JButton resetButton = new JButton("Reset Counter");
-	private final JButton calendarButton = new JButton("Calendar");
+	private JButton calendarButton = new JButton("Calendar");
+	private JButton endDayButton = new JButton("End Day!");
+	CallSaveCSV save = new CallSaveCSV();
 
 	private void createUI() {
 		// Main Frame
@@ -43,6 +50,7 @@ public class CallCounterUI extends JFrame {
 		getContentPane().setLayout(null);
 
 		// Button
+		
 		getContentPane().add(count);
 		count.setBounds(28, 57, 145, 38);
 		count.addActionListener(new ActionListener() {
@@ -53,12 +61,6 @@ public class CallCounterUI extends JFrame {
 
 			}
 		});
-		// Field
-		counterField.setSize(145, 45);
-		counterField.setLocation(28, 11);
-		getContentPane().add(counterField);
-		counterField.setEditable(false);
-
 		resetButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				counterField.setText(" ");
@@ -67,6 +69,7 @@ public class CallCounterUI extends JFrame {
 		});
 		resetButton.setBounds(28, 95, 145, 32);
 		getContentPane().add(resetButton);
+		
 		calendarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CalendarUI calendar = new CalendarUI();
@@ -74,8 +77,39 @@ public class CallCounterUI extends JFrame {
 			}
 		});
 		calendarButton.setBounds(183, 11, 89, 32);
-		
+
 		getContentPane().add(calendarButton);
+		endDayButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				try {
+					JOptionPane.showMessageDialog(null, "Saved! Day Completed!", "File Saved",
+							JOptionPane.INFORMATION_MESSAGE, null);
+					save.save(" Calls Made: " + parser);
+
+				} catch (IOException e) {
+					
+					JOptionPane.showMessageDialog(null, "No file Found! Check File!", "File Not Found!",
+							JOptionPane.ERROR_MESSAGE, null);
+				}
+
+			}
+		});
+		endDayButton.setBounds(183, 95, 89, 32);
+		getContentPane().add(endDayButton);
+		
+		
+		// Field
+		counterField.setSize(145, 45);
+		counterField.setLocation(28, 11);
+		getContentPane().add(counterField);
+		counterField.setEditable(false);
+
+	
+
+
+		
+
 
 	}
 }
