@@ -1,6 +1,14 @@
-Thu Apr 07 14:21:09 EEST 2016 Calls Made: 5
-Thu Apr 07 14:24:19 EEST 2016 Calls Made: 10
-Thu Apr 07 14:43:55 EEST 2016 Calls Made: 5
-java.text.SimpleDateFormat@90c46740 Calls Made: 2
-Thu Apr 07 16:06:59 EEST 2016 Calls Made: 6
-Thu Apr 07 16:09:01 EEST 2016 Calls Made: 2
+Thu Apr 07 20:04:55 EEST 2016 Calls Made: null
+Thu Apr 07 20:09:08 EEST 2016 Calls Made: 1
+Thu Apr 07 20:10:56 EEST 2016 Calls Made: 4
+Thu Apr 07 20:03:47 EEST 2016 Calls Made: 24
+Thu Apr 07 20:53:52 EEST 2016 Calls Made: null
+Thu Apr 07 20:56:51 EEST 2016 Calls Made: 5
+Thu Apr 07 20:57:15 EEST 2016 Calls Made: 1
+Thu Apr 07 20:57:15 EEST 2016 Calls Made: 12
+Thu Apr 07 20:57:56 EEST 2016 Calls Made: 6
+Thu Apr 07 21:01:39 EEST 2016 Calls Made: 6
+Thu Apr 07 21:01:39 EEST 2016 Calls Made: 1
+Thu Apr 07 21:02:14 EEST 2016 Calls Made: 5
+Thu Apr 07 21:03:35 EEST 2016 -  Calls Made: 3
+Thu Apr 07 21:18:39 EEST 2016 -  Calls Made: 4

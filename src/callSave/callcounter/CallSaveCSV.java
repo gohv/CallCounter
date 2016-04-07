@@ -18,7 +18,7 @@ public class CallSaveCSV {
 		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("CSV/calls.txt", true))))
 		{
 			
-				writer.write(getDate);
+				writer.write(getDate + " - ");
 				writer.write(save);
 				writer.write("\n");
 			
