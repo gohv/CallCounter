@@ -9,8 +9,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import callSave.callcounter.*;
+import countcalls.callcounter.CountCalls;
 import calendar.callcounter.CalendarUI;
+import filehandler.callcounter.*;
 
 /**
  * @author georgi.hristov
@@ -20,10 +21,8 @@ public class CallCounterUI extends JFrame {
 
 	/**
 	 * 
-	 * TO DO :
-	 * Make sepparate class for countCalls;
-	 * Try to add a timer
-	 *
+	 * DONE : Make separate class for countCalls; 
+	 * TO DO: Try to add a timer
 	 */
 
 	private static final long serialVersionUID = 1L;
@@ -35,18 +34,16 @@ public class CallCounterUI extends JFrame {
 
 	private JButton count = new JButton("Count Call");
 	private JTextField counterField = new JTextField();
-	private int countCalls = 0;
-	private String parser;
 	private JButton resetButton = new JButton("Reset Counter");
 	private JButton calendarButton = new JButton("Calendar");
 	private JButton endDayButton = new JButton("End Day!");
-	CallSaveCSV save = new CallSaveCSV();
-
+	FileHandler save = new FileHandler();
+	CountCalls counter = new CountCalls();
 	private void createUI() {
 
 		// Main Frame
 		setTitle("Call Counter");
-		setBounds(100, 100, 318, 177);
+		setBounds(100, 100, 331, 189);
 
 		getContentPane().setLayout(null);
 
@@ -56,16 +53,15 @@ public class CallCounterUI extends JFrame {
 		count.setBounds(28, 57, 145, 38);
 		count.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				countCalls++;
-				parser = Integer.toString(countCalls);
-				counterField.setText(parser);
+				counter.count();
+				counterField.setText(counter.getParser());
 
 			}
 		});
 		resetButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				counterField.setText(" ");
-				countCalls = 0;
+				counterField.setText(" ");				
+				counter.getCountCalls();
 				endDayButton.setEnabled(false);
 			}
 		});
@@ -89,7 +85,7 @@ public class CallCounterUI extends JFrame {
 					JOptionPane.showMessageDialog(null, "Saved! Day Completed!", "File Saved",
 							JOptionPane.INFORMATION_MESSAGE, null);
 
-					save.save(" Calls Made: " + parser);
+					save.save(" Calls Made: " + counter.getParser());
 
 				} catch (IOException e) {
 
@@ -99,15 +95,27 @@ public class CallCounterUI extends JFrame {
 
 			}
 		});
-		endDayButton.setBounds(183, 95, 89, 32);
+		endDayButton.setBounds(185, 60, 89, 32);
 		updateButton();
 		getContentPane().add(endDayButton);
+		
+		JButton openFileButton = new JButton("Open");
+		openFileButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				save.openFile();
+			}
+		});
+		
+		openFileButton.setBounds(185, 95, 87, 32);
+		getContentPane().add(openFileButton);
 
 		// Field
 		counterField.setSize(145, 45);
 		counterField.setLocation(28, 11);
 		getContentPane().add(counterField);
 		counterField.setEditable(false);
+
+		
 		counterField.getDocument().addDocumentListener(new DocumentListener() {
 			// disable EndOfDayButton if not calls are counter.
 			@Override
@@ -129,8 +137,8 @@ public class CallCounterUI extends JFrame {
 
 	// disable method:
 	private void updateButton() {
-		String firstText = counterField.getText();
-		if (firstText == null || firstText.length() == 0) {
+		String getText = counterField.getText();
+		if (getText == null || getText.length() == 0) {
 			endDayButton.setEnabled(false);
 			return;
 		}
