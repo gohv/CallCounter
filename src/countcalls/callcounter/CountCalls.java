@@ -16,6 +16,10 @@ public class CountCalls {
 		return parser;
 	}
 	
+	public void setCountCalls(int countCalls){
+		this.countCalls = countCalls;
+	}
+	
 
 
 
