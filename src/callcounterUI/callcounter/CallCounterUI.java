@@ -61,7 +61,7 @@ public class CallCounterUI extends JFrame {
 		resetButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				counterField.setText(" ");				
-				counter.getCountCalls();
+				counter.setCountCalls(0);
 				endDayButton.setEnabled(false);
 			}
 		});
