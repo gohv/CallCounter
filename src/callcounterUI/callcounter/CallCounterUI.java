@@ -84,7 +84,8 @@ public class CallCounterUI extends JFrame {
 				try {
 					JOptionPane.showMessageDialog(null, "Saved! Day Completed!", "File Saved",
 							JOptionPane.INFORMATION_MESSAGE, null);
-
+					counter.setCountCalls(0);
+					counterField.setText(" ");
 					save.save(" Calls Made: " + counter.getParser());
 
 				} catch (IOException e) {
