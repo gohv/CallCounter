@@ -1,9 +1,6 @@
 package filehandler.callcounter;
 
 import java.util.Date;
-
-import javax.swing.JOptionPane;
-
 import java.awt.Desktop;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -11,12 +8,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.text.SimpleDateFormat;
 
 
 public class FileHandler {
-	Date date = new Date();
-
-	String getDate = date.toString();
+	Date date = new Date();		
+	SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
+	String getDate = DATE_FORMAT.format(date);
+	
+	
 
 	public void save(String save) throws FileNotFoundException, IOException {
 		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("CSV/calls.csv", true)))) {
@@ -30,12 +30,13 @@ public class FileHandler {
 	public void openFile() {
 
 		try {
-
+			// this can blow up hard......
 			Desktop.getDesktop().open(new java.io.File("CSV/calls.csv"));
+			
 		} catch (IOException e) {
 
-			JOptionPane.showMessageDialog(null, "No file Found! Check File!", "File Not Found!",
-					JOptionPane.ERROR_MESSAGE, null);
+			System.err.println("Cannot open File!");
+					
 		}
 
 	}
