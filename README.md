@@ -2,7 +2,7 @@
 
 Counts each call you receive with clicking a button.
 Save the amount of calls for each day in a .txt with date and time.
-Now it wont allow you to save the file unless a call was made. Button will be grayed out.
+
 
 
 ![alt tag](https://raw.githubusercontent.com/gohv/CallCounter/281b464e67cab9c7f0c7c07fdb449b88a55b1d6e/main.PNG "Main")
